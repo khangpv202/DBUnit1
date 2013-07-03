@@ -1,5 +1,7 @@
 package BankAccountDTO;
 
+import java.sql.Timestamp;
+
 /**
  * Created with IntelliJ IDEA.
  * User: khangpv
@@ -20,6 +22,13 @@ public class BankAccountDTO {
     public BankAccountDTO(String accountNumber,double balance)
     {
         this.balance = balance;
+        this.accountNumber = accountNumber;
+    }
+
+    public BankAccountDTO(String accountNumber, double balance, long timestamp)
+    {
+        this.balance       = balance;
+        this.timeStamp     = timestamp;
         this.accountNumber = accountNumber;
     }
 
@@ -44,5 +53,28 @@ public class BankAccountDTO {
     public void setTimeStamp(long timeStamp)
     {
         this.timeStamp = timeStamp;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        boolean  check = false;
+        if(o instanceof BankAccountDTO){
+            if(this.accountNumber==((BankAccountDTO) o).getAccountNumber()
+                    && this.timeStamp==((BankAccountDTO) o).getTimeStamp()
+                    && this.balance==((BankAccountDTO) o).getBalance())
+                check = true;
+        }
+        return check;
+    }
+
+    @Override
+    public int hashCode()
+    {
+       return 1;
+    }
+    @Override
+    public String toString(){
+        return accountNumber+"  "+balance+" "+timeStamp;
     }
 }

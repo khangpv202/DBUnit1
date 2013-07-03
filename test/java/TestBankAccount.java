@@ -34,7 +34,8 @@ public class TestBankAccount  {
     }
 
     @Test
-    public void testOpenAccount(){
+    public void testOpenAccount() throws SQLException
+    {
         BankAccountDTO initialAccount = BankAccount.open(accountNumber);
         ArgumentCaptor<BankAccountDTO> saveAccount = ArgumentCaptor.forClass(BankAccountDTO.class);
         verify(mockBankAccountDAO).save(saveAccount.capture());

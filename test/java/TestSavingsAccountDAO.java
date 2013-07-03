@@ -17,6 +17,7 @@ import java.nio.charset.Charset;
 import java.sql.SQLException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestSavingsAccountDAO
 {
@@ -69,7 +70,11 @@ public class TestSavingsAccountDAO
         BankAccount.setMockBankAccount(savingsAccountDAO);
         BankAccountDTO initialAccount = BankAccount.open(accountNumber);
         BankAccountDTO accountDTO = savingsAccountDAO.getAccountNumber(accountNumber);
-        assertEquals(initialAccount,accountDTO);
+
+        assertEquals(accountDTO.getAccountNumber(),accountNumber);
+        assertEquals(initialAccount.getAccountNumber(),accountDTO.getAccountNumber());
+        assertEquals(initialAccount.getBalance(),accountDTO.getBalance(),0.001);
+        assertTrue(initialAccount.equals(accountDTO));
     }
 
     private DataSource dataSource() {
