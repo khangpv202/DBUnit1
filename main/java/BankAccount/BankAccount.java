@@ -40,7 +40,7 @@ public class BankAccount{
         bankAccountDTO.setBalance (bankAccountDTO.getBalance()+amount);
         bankAccountDAO.save(bankAccountDTO);
         TransactionDTO transaction = new TransactionDTO(accountNumber,amount,descreption);
-        Transaction.save(transaction);
+        //Transaction.save(transaction);
         return transaction;
     }
 
@@ -50,7 +50,7 @@ public class BankAccount{
         bankAccountDTO.setBalance (bankAccountDTO.getBalance()+amount);
         bankAccountDAO.save(bankAccountDTO);
         TransactionDTO transactionDTO = new TransactionDTO(accountNumber,amount,description);
-        Transaction.save(transactionDTO);
+        //Transaction.save(transactionDTO);
         return  transactionDTO;
     }
 

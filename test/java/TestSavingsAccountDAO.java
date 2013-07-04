@@ -71,12 +71,33 @@ public class TestSavingsAccountDAO
         BankAccountDTO initialAccount = BankAccount.open(accountNumber);
         BankAccountDTO accountDTO = savingsAccountDAO.getAccountNumber(accountNumber);
 
-        assertEquals(accountDTO.getAccountNumber(),accountNumber);
-        assertEquals(initialAccount.getAccountNumber(),accountDTO.getAccountNumber());
-        assertEquals(initialAccount.getBalance(),accountDTO.getBalance(),0.001);
         assertTrue(initialAccount.equals(accountDTO));
     }
+    @Test
+    public void testDeposit() throws SQLException
+    {
+        BankAccountDAO savingsAccountDAO = new BankAccountDAO(dataSource());
+        BankAccount.setMockBankAccount(savingsAccountDAO);
+        BankAccountDTO initialAccount = BankAccount.open(accountNumber);
+        BankAccount.deposit(accountNumber, 10, "first Deposit");
+        BankAccountDTO accountGetFromDB = savingsAccountDAO.getAccountNumber(accountNumber);
+        assertEquals(initialAccount.getBalance(),accountGetFromDB.getBalance(),0.001);
+    }
+    @Test
+    public void testWithDraw() throws SQLException
+    {
+        BankAccountDAO savingsAccountDAO = new BankAccountDAO(dataSource());
+        BankAccount.setMockBankAccount(savingsAccountDAO);
+        BankAccountDTO initialAccount = BankAccount.open(accountNumber);
+        BankAccount.deposit(accountNumber,10,"first Deposit");
+        BankAccount.withdraw(accountNumber,10,"first Deposit");
+        BankAccountDTO accountGetFromDB = savingsAccountDAO.getAccountNumber(accountNumber);
+        assertEquals(initialAccount.getBalance(),accountGetFromDB.getBalance(),0.001);
+    }
+    @Test
+    public void testDepositHasTimestamp(){
 
+    }
     private DataSource dataSource() {
         JdbcDataSource dataSource = new JdbcDataSource();
         dataSource.setURL(JDBC_URL);

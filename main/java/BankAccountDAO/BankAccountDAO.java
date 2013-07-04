@@ -25,11 +25,16 @@ public class BankAccountDAO {
 
     public void save(BankAccountDTO account) throws SQLException
     {
-        String query = "INSERT INTO SAVINGS_ACCOUNT(Account_Number,Timestamps ,Balance) values ('"+account.getAccountNumber()+"',"+"'"
-                +account.getTimeStamp()+"',"+"'"+account.getBalance()+"')";
-        //ResultSet resultSet = dbConnection.createStatement().executeQuery(query);
-        Statement stmt = dbConnection.createStatement();
-        stmt.execute(query);
+        if(getAccountNumber(account.getAccountNumber())!=null){
+            String query = "UPDATE SAVINGS_ACCOUNT SET Balance = '"+account.getBalance()+"'" +
+                    "where Account_Number '"+account.getAccountNumber()+"';";
+        }else{
+            String query = "INSERT INTO SAVINGS_ACCOUNT(Account_Number,Timestamps ,Balance) values ('"+account.getAccountNumber()+"',"+"'"
+                    +account.getTimeStamp()+"',"+"'"+account.getBalance()+"')";
+            //ResultSet resultSet = dbConnection.createStatement().executeQuery(query);
+            Statement stmt = dbConnection.createStatement();
+            stmt.execute(query);
+        }
     }
 
     public BankAccountDTO getAccountNumber(String accountNumber) throws SQLException
