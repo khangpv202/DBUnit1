@@ -90,7 +90,7 @@ public class TestBankAccount  {
         BankAccount.deposit(accountNumber,10,"first deposit");
         TransactionDTO transactionDTO =BankAccount.withdraw(accountNumber,-10,"first withdraw");
         ArgumentCaptor<TransactionDTO> savedTransaction = ArgumentCaptor.forClass(TransactionDTO.class);
-        verify(mockTransactinDAO,times(2)).save(savedTransaction.capture());
+        verify(mockTransactinDAO,times(1)).save(savedTransaction.capture());
         assertEquals(transactionDTO.getTimestamp(),savedTransaction.getValue().getTimestamp());
     }
     @Test

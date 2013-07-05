@@ -2,6 +2,6 @@
 <dataset>
 <SAVINGS_ACCOUNT Account_Number='0123456789' Timestamps='100' Balance='100.0'/>
 <SAVINGS_ACCOUNT Account_Number="987" Timestamps="1000" Balance="50"/>
-<TRANSACTIONs ACCOUNT_NUMBER='123456789' Timestamps= '100' Amount= '10' Description='hehe'/>
-<TRANSACTIONs ACCOUNT_NUMBER='12345678' Timestamps= '100' Amount= '10' Description='hehe'/>
+<TRANSACTIONS ACCOUNT_NUMBER='123456789' Timestamps= '100' Amount= '10' Description='hehe'/>
+<TRANSACTIONS ACCOUNT_NUMBER='12345678' Timestamps= '100' Amount= '10' Description='hehe'/>
 </dataset>

@@ -3,6 +3,7 @@ package Transaction;
 import TransactionDAO.TransactionDAO;
 import TransactionDTO.TransactionDTO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class Transaction
         transactionDAO = transactinDao;
     }
 
-    public static void save(TransactionDTO transactionDTO)
+    public static void save(TransactionDTO transactionDTO) throws SQLException
     {
         transactionDAO.save(transactionDTO);
     }

@@ -25,4 +25,24 @@ public class TransactionDTO
     {
         return timestemp;
     }
+
+    public String getAccountNumber()
+    {
+        return this.accountNumber;
+    }
+
+    public long getTimeStamp()
+    {
+        return this.timestemp;
+    }
+
+    public double amount()
+    {
+        return this.amount;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
 }
